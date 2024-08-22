@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="faca7dad5b324fac827467c275aec430" Name="Diagram1" ZoomLevel="124">
+        <EntityTypeShape EntityType="Hastane_ProjeModel.Adenopaty" Width="1.5" PointX="3.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hastane_ProjeModel.Focality" Width="1.5" PointX="3.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hastane_ProjeModel.Iletisim" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hastane_ProjeModel.Kullanici" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hastane_ProjeModel.M" Width="1.5" PointX="3.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hastane_ProjeModel.N" Width="1.5" PointX="3.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hastane_ProjeModel.Pathology" Width="1.5" PointX="3.75" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hastane_ProjeModel.Physical_Examination" Width="1.5" PointX="3.75" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hastane_ProjeModel.Response" Width="1.5" PointX="3.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hastane_ProjeModel.Risk" Width="1.5" PointX="3.75" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hastane_ProjeModel.Stage" Width="1.5" PointX="3.75" PointY="27.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hastane_ProjeModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hastane_ProjeModel.T" Width="1.5" PointX="3.75" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hastane_ProjeModel.Thyroid_Function" Width="1.5" PointX="3.75" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Hastane_ProjeModel.Tiroid_Verileri" Width="1.5" PointX="6" PointY="2.75" IsExpanded="true" />
+        <AssociationConnector Association="Hastane_ProjeModel.FK_Tiroid_Verileri_Adenopaty" ManuallyRouted="false" />
+        <AssociationConnector Association="Hastane_ProjeModel.FK_Tiroid_Verileri_Focality" ManuallyRouted="false" />
+        <AssociationConnector Association="Hastane_ProjeModel.FK_Iletisim_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="Hastane_ProjeModel.FK_Tiroid_Verileri_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="Hastane_ProjeModel.FK_Tiroid_Verileri_M" ManuallyRouted="false" />
+        <AssociationConnector Association="Hastane_ProjeModel.FK_Tiroid_Verileri_N" ManuallyRouted="false" />
+        <AssociationConnector Association="Hastane_ProjeModel.FK_Tiroid_Verileri_Pathology" ManuallyRouted="false" />
+        <AssociationConnector Association="Hastane_ProjeModel.FK_Tiroid_Verileri_Physical_Examination" ManuallyRouted="false" />
+        <AssociationConnector Association="Hastane_ProjeModel.FK_Tiroid_Verileri_Response" ManuallyRouted="false" />
+        <AssociationConnector Association="Hastane_ProjeModel.FK_Tiroid_Verileri_Risk" ManuallyRouted="false" />
+        <AssociationConnector Association="Hastane_ProjeModel.FK_Tiroid_Verileri_Stage" ManuallyRouted="false" />
+        <AssociationConnector Association="Hastane_ProjeModel.FK_Tiroid_Verileri_T" ManuallyRouted="false" />
+        <AssociationConnector Association="Hastane_ProjeModel.FK_Tiroid_Verileri_Thyroid_Function" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

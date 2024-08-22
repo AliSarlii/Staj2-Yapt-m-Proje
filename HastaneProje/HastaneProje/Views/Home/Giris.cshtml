@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.title = "Giriş";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        background-image: url('../../Content/HomeController/img/background1.jpg');
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+        margin: 0;
+        height: 100vh;
+    }
+
+    .overlayy {
+        background-color: rgba(71, 36, 218, 0.7);
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-container {
+        background-color: #fff;
+        color: #333;
+        padding: 30px;
+        border-radius: 10px;
+        max-width: 400px;
+        width: 100%;
+    }
+
+    .login-container h1 {
+        color: #4724da;
+    }
+
+    .btn-custom {
+        background-color: #4724da;
+        border: none;
+        color: #fff;
+    }
+
+    .btn-custom:hover {
+        background-color: #3a1eac;
+    }
+</style>
+@if (ViewBag.yanlis == true)
+{
+    <div class=" d-flex align-items-center" role="alert">
+        <div class="alert alert-danger col-10" style="margin:auto;">
+            Doğrulama kodunu yanlış veya hatalı!
+        </div>
+    </div>
+}
+<div class="overlayy">
+    <div class="login-container">
+        <h1 class="m-auto">Hastane Giriş</h1>
+        <p class="m-auto">Giriş yaparak hastane sistemine erişebilirsiniz.</p>
+        <br />
+        <p class="m-auto">Üye değilseniz bu sayfadan üyeliğinizi oluşturabilirsiniz.</p>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="mb-3">
+                <label for="email" class="form-label ">Kullanıcı Adı</label>
+                <input type="email" id="email" name="email" class="form-control" required placeholder="E-posta" , style="margin:auto" maxlength="254"/>
+            </div>
+            <div style="width:max-content; margin:auto;">
+                <button type="submit" class="btn btn-success" style="letter-spacing:1px;">&emsp;Giriş&emsp;</button>
+            </div>
+        }
+    </div>
+</div>

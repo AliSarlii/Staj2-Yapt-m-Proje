@@ -1,0 +1,139 @@
+﻿@model HastaneProje.Models.Tiroid_Verileri
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.title = "Verimi Sil";
+}
+<style>
+    body {
+        background-color: white;
+    }
+
+    .card {
+        margin-top: 50px;
+        border-color: white;
+    }
+
+    .card-header {
+        background-color: white;
+        color: black;
+        text-align: center;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+</style>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Verinizi Silmek İstediğinizden Emin Misiniz?
+        </div>
+        <div class="card-body">
+            <p class="text-center">Bu işlem geri alınamaz. Aşağıdaki bilgileri silmek üzeresiniz:</p>
+            <hr>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <b>Yaş:</b>
+                        @Html.DisplayFor(model => model.age)
+                    </div>
+                    <div class="form-group">
+                        <b>Cinsiyet:</b>
+                        @Html.DisplayFor(model => model.gender)
+                    </div>
+                    <div class="form-group">
+                        <b>Sigara Kullanımı:</b>
+                        @Html.DisplayFor(model => model.smoking)
+                    </div>
+                    <div class="form-group">
+                        <b>Sigara Geçmişi:</b>
+                        @Html.DisplayFor(model => model.hx_Smoking)
+                    </div>
+                    <div class="form-group">
+                        <b>Radyoterapi Geçmişi:</b>
+                        @Html.DisplayFor(model => model.hx_Radiothreapy)
+                    </div>
+                    <div class="form-group">
+                        <b>Tekrar:</b>
+                        @Html.DisplayFor(model => model.recurred)
+                    </div>
+                    <div class="form-group">
+                        <b>Ölçüm Tarihi:</b>
+                        @Html.DisplayFor(model => model.olcum_Tarihi)
+                    </div>
+                    <div class="form-group">
+                        <b>Adenopati:</b>
+                        @Html.DisplayFor(model => model.Adenopaty1.adenopaty_Veri)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <b>Fokalite:</b>
+                        @Html.DisplayFor(model => model.Focality1.focality_Veri)
+                    </div>
+                    <div class="form-group">
+                        <b>Kullanıcı Adı:</b>
+                        @Html.DisplayFor(model => model.Kullanici1.ad)
+                    </div>
+                    <div class="form-group">
+                        <b>M Değeri:</b>
+                        @Html.DisplayFor(model => model.M1.m_Veri)
+                    </div>
+                    <div class="form-group">
+                        <b>N Değeri:</b>
+                        @Html.DisplayFor(model => model.N1.n_Veri)
+                    </div>
+                    <div class="form-group">
+                        <b>Patoloji:</b>
+                        @Html.DisplayFor(model => model.Pathology1.pathology_Veri)
+                    </div>
+                    <div class="form-group">
+                        <b>Fiziksel Muayene:</b>
+                        @Html.DisplayFor(model => model.Physical_Examination1.physical_Examination_Veri)
+                    </div>
+                    <div class="form-group">
+                        <b>Cevap:</b>
+                        @Html.DisplayFor(model => model.Response1.response_Veri)
+                    </div>
+                    <div class="form-group">
+                        <b>Risk:</b>
+                        @Html.DisplayFor(model => model.Risk1.risk_Veri)
+                    </div>
+                    <div class="form-group">
+                        <b>Evre:</b>
+                        @Html.DisplayFor(model => model.Stage1.stage_Veri)
+                    </div>
+                    <div class="form-group">
+                        <b>T Değeri:</b>
+                        @Html.DisplayFor(model => model.T1.t_Veri)
+                    </div>
+                    <div class="form-group">
+                        <b>Tiroid Fonksiyonu:</b>
+                        @Html.DisplayFor(model => model.Thyroid_Function1.thyroid_Function_Veri)
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            <div class="text-center">
+                <form method="post" action="/Doktor/VerimiSil/@(Model.Id)">
+                    @Html.AntiForgeryToken()
+                    <a href="/Doktor/Verilerim" class="btn btn-secondary">İptal</a>
+                    &nbsp;
+                    <button type="submit" class="btn btn-danger">Verimi Sil</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+﻿@model HastaneProje.Models.Iletisim
+@{
+    Layout = "~/Views/Shared/_KullaniciLayout.cshtml";
+    ViewBag.title = "İletişim";
+}
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 50px;
+    }
+
+    .form-container, .address-container {
+        flex: 1;
+        min-width: 300px;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+    }
+
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+                
+    }
+
+    .form-control:focus {
+        border-color: #4724da;
+        box-shadow: none;
+    }
+
+    .btn-primary {
+        background-color: #4724da;
+        border-color: #4724da;
+    }
+
+    .btn-primary:hover {
+        background-color: #3b1da9;
+        border-color: #3b1da9;
+    }
+
+    .address-container h4 {
+        color: #4724da;
+        margin-bottom: 20px;
+    }
+
+    .address-container p {
+        margin: 0 0 10px;
+        line-height: 1.6;
+    }
+</style>
+<h2 class="text-center" style="color: #4724da;">İletişim</h2>
+<div class="container">
+    
+    <div class="form-container">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.HiddenFor(model => model.kullanici)
+            @Html.HiddenFor(model => model.okundu_Bilgi)
+
+            <div class="form-container w-100 " style="margin-bottom:10px;">
+                <div class="mb-3 w-100">
+                    <label for="message" class="form-label">Message</label>
+                    @Html.TextAreaFor(model => model.mesaj, new { @class = "form-control w-100", placeholder = "Enter your message here", rows = 5, @style = "max-width:500px!important;" })
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+        }
+    </div>
+
+    <div class="address-container">
+        <h4>Hospital Address & Contact Information</h4>
+        <p><strong>Address:</strong> 123 Health Street, City, Country</p>
+        <p><strong>Phone:</strong> +90 123 456 7890</p>
+        <p><strong>Email:</strong> contact@hospital.com</p>
+    </div>
+</div>

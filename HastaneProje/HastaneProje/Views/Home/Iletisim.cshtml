@@ -1,0 +1,75 @@
+﻿@model HastaneProje.Models.Iletisim
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "İletişim";
+}
+
+<section class="appointment">
+
+    @if (ViewBag.Mesaj == true)
+    {
+        <div class="alert alert-success col-md-6 m-auto" role="alert">
+            Mesajınız başarıyla iletildi. En kısa sürede size dönüş yapacağız.
+        </div>
+        <br />
+        <br />
+    }
+    else if (ViewBag.Mesaj == false)
+    {
+        <div class="alert alert-warning col-md-6 m-auto" role="alert">
+            Mesajınız iletilemedi. Tekrar deneyin veya ekibimize bildirin.
+        </div>
+        <br />
+        <br />
+    }
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>Bir şey mi arıyorsunuz? Ekibimizle iletişime geçin.</h2>
+                    <img src="~/Content/HomeController/img/Section-img.png" alt="#">
+                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-12">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.okundu_Bilgi)
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.e_posta, new { htmlAttributes = new { @class = "form-control", @placeholder = "E-postanızı girin", required = "required", maxlength = "254", @style = "border:none;" , type = "email" } })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-12">
+                            <div class="form-group">
+                                @Html.TextAreaFor(model => model.mesaj, new { @class = "form-control", placeholder = "Mesajınızı girin ...", rows = 10, @style = "border:none;", maxlength = "499" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5 col-md-4 col-12">
+                            <div class="form-group">
+                                <div class="button">
+                                    <button type="submit" class="btn">Mesajı Gönder</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-8 col-12">
+                            <p>( İletişim formunu onaylıyorum )</p>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="col-lg-6 col-md-12 ">
+                <div class="appointment-image">
+                    <img src="~/Content/HomeController/img/contact-img.png" alt="#">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

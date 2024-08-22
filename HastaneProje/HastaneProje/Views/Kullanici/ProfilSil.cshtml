@@ -1,0 +1,66 @@
+﻿@model HastaneProje.Models.Kullanici
+@{
+    Layout = "~/Views/Shared/_KullaniciLayout.cshtml";
+    ViewBag.title = "Profili Sil";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .form-container {
+        max-width: 600px;
+        margin: 50px auto;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #4724da;
+    }
+
+    .form-control-plaintext {
+        color: #495057;
+    }
+
+    .btn-primary {
+        background-color: #4724da;
+        border-color: #4724da;
+    }
+
+    .btn-primary:hover {
+        background-color: #482cb7;
+        border-color: #482cb7;
+    }
+</style>
+<div class="form-container">
+    <h2>Profilimi Sil</h2>
+    <div class="mb-3">
+        <label for="confirmText" class="form-label">Kendinizi silmek istediğinizden emin misiniz ?</label>
+        <p class="form-control-plaintext" id="confirmText">
+            <strong>@Html.DisplayFor(model => model.ad)  @Html.DisplayFor(model => model.soyad)</strong><br>
+            Telefon Numarası: @Html.DisplayFor(model => model.tel_No)<br>
+            E-posta: @Html.DisplayFor(model => model.e_posta)
+        </p>
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-check">
+            @Html.CheckBox("veri", new { htmlAttributes = new { @class = "form-check-input", id = "flexCheckDefault" } })
+            <label class="form-check-label" for="flexCheckDefault">
+                Verilerimi de sil
+            </label>
+        </div>
+        <br />
+        <div class="d-flex justify-content-between">
+            <a href="/Kullanici/Profilim/" class="btn btn-secondary">Vazgeç</a>
+            <button type="submit" class="btn btn-primary">Kendimi Sil</button>
+        </div>
+    }
+</div>

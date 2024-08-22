@@ -1,0 +1,155 @@
+﻿@model HastaneProje.Models.Tiroid_Verileri
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.title = "Tahmin";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+    }
+
+    .card {
+        margin-top: 50px;
+        border-radius: 10px;
+        border: 1px solid #dee2e6;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        background-color: #ffffff;
+        color: #4724da;
+        text-align: center;
+        font-size: 1.5rem;
+        padding: 20px;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .card-body {
+        padding: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
+    }
+
+    .summary-section {
+        margin-top: 20px;
+        padding: 15px;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        background-color: #ffffff;
+    }
+
+    .summary-section h4 {
+        margin-bottom: 15px;
+        color: #6c757d;
+    }
+
+    .summary-section p {
+        margin: 5px 0;
+    }
+</style>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Tahmin Verileri
+        </div>
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <b>Yaş:</b> @Html.DisplayFor(model => model.age)
+                    </div>
+                    <div class="form-group">
+                        <b>Cinsiyet:</b> @Html.DisplayFor(model => model.gender)
+                    </div>
+                    <div class="form-group">
+                        <b>Sigara Kullanımı:</b> @Html.DisplayFor(model => model.smoking)
+                    </div>
+                    <div class="form-group">
+                        <b>Sigara Geçmişi:</b> @Html.DisplayFor(model => model.hx_Smoking)
+                    </div>
+                    <div class="form-group">
+                        <b>Radyoterapi Geçmişi:</b> @Html.DisplayFor(model => model.hx_Radiothreapy)
+                    </div>
+                    <div class="form-group">
+                        <b>Tekrar:</b> @Html.DisplayFor(model => model.recurred)
+                    </div>
+                    <div class="form-group">
+                        <b>Ölçüm Tarihi:</b> @Html.DisplayFor(model => model.olcum_Tarihi)
+                    </div>
+                    <div class="form-group">
+                        <b>Adenopati:</b> @Html.DisplayFor(model => model.Adenopaty1.adenopaty_Veri)
+                    </div>
+                    <div class="form-group">
+                        <b>Fokalite:</b> @Html.DisplayFor(model => model.Focality1.focality_Veri)
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <b>M Değeri:</b> @Html.DisplayFor(model => model.M1.m_Veri)
+                    </div>
+                    <div class="form-group">
+                        <b>N Değeri:</b> @Html.DisplayFor(model => model.N1.n_Veri)
+                    </div>
+                    <div class="form-group">
+                        <b>Patoloji:</b> @Html.DisplayFor(model => model.Pathology1.pathology_Veri)
+                    </div>
+                    <div class="form-group">
+                        <b>Fiziksel Muayene:</b> @Html.DisplayFor(model => model.Physical_Examination1.physical_Examination_Veri)
+                    </div>
+                    <div class="form-group">
+                        <b>Cevap:</b> @Html.DisplayFor(model => model.Response1.response_Veri)
+                    </div>
+                    <div class="form-group">
+                        <b>Risk:</b> @Html.DisplayFor(model => model.Risk1.risk_Veri)
+                    </div>
+                    <div class="form-group">
+                        <b>Evre:</b> @Html.DisplayFor(model => model.Stage1.stage_Veri)
+                    </div>
+                    <div class="form-group">
+                        <b>T Değeri:</b> @Html.DisplayFor(model => model.T1.t_Veri)
+                    </div>
+                    <div class="form-group">
+                        <b>Tiroid Fonksiyonu:</b> @Html.DisplayFor(model => model.Thyroid_Function1.thyroid_Function_Veri)
+                    </div>
+                    <div class="form-group">
+                        <b>Kullanıcı Ad Soyad:</b> @Html.DisplayFor(model => model.Kullanici1.ad) @Html.DisplayFor(model => model.Kullanici1.soyad)
+                    </div>
+                </div>
+            </div>
+
+            @if (ViewBag.Accuracy != null && ViewBag.TestVeriPredList != null && ViewBag.TestVeriPredList.Count > 0)
+             {
+                <div class="summary-section">
+                    <h4>Makine Öğrenmesi Verileri</h4>
+                    <p><strong>Model Türü:</strong> Destek Vektör Makineleri (SVM)</p>
+                    <p><strong>Doğruluk Oranı:</strong> @ViewBag.Accuracy% (Bu oran, modelin test verileri üzerinde doğru tahmin yapma oranını ifade eder.)</p>
+
+                    @if (ViewBag.TestVeriPredList[0] == 0)
+                    {
+                        <p><strong>İlk Test Veri Tahmini:</strong> Geçmiş olsun. Hastalık geçirme riskiniz düşük.</p>
+                    }
+                    else
+                    {
+                        <p><strong>Tahmin Sonucu:</strong> Dikkatli olunuz. Hastalık geçirebilirsiniz. En yakın zamanda bir sağlık kuruluşuna gidiniz.</p>
+                    }
+                </div>
+             }
+        </div>
+    </div>
+</div>

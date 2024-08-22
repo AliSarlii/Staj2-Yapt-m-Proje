@@ -1,0 +1,110 @@
+﻿@model IEnumerable<HastaneProje.Models.Tiroid_Verileri>
+@{
+    Layout = "~/Views/Shared/_KullaniciLayout.cshtml";
+    ViewBag.title = "Verilerim";
+}
+<style>
+    .custom-font {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+    }
+
+    .custom-font strong {
+        font-weight: 600;
+    }
+
+    .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .baslik {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #4724da;
+    }
+</style>
+<h2 class="baslik">Verilerim</h2>
+<br />
+
+<div class="container col-md-8">
+    <div class="accordion" id="accordionExample">
+        @foreach (var item in Model)
+        {
+            <div class="accordion-item" style="margin:10px;">
+                <h2 class="accordion-header" id="heading@(item.Id)">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse@(item.Id)" aria-expanded="true" aria-controls="collapse@(item.Id)">
+                        <pre class="custom-font"><b>Ölçüm Tarihi: </b>@Html.DisplayFor(modelItem => item.olcum_Tarihi)</pre>
+                    </button>
+                </h2>
+                <div id="collapse@(item.Id)" class="accordion-collapse collapse w-100" aria-labelledby="heading@(item.Id)" data-bs-parent="#accordionExample">
+                    <div class="accordion-body w-100">
+                        <ul class="list-group list-group-flush w-100">
+                            <li style="list-style-type: none;">
+                                <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-content:stretch; align-items:center; column-gap:30px; row-gap:30px; padding:10px;">
+                                    <p><b>Yaş: </b>@Html.DisplayFor(modelItem => item.age)</p>
+                                    @if (item.gender == true)
+                                    {
+                                        <p><b>Cinsiyet: </b>Erkek</p>
+                                    }
+                                    @if (item.gender == false)
+                                    {
+                                        <p><b>Cinsiyet: </b>Kadın</p>
+                                    }
+                                    @if (item.smoking == true)
+                                    {
+                                        <p><b>Sigara Kullanımı: </b>Evet</p>
+                                    }
+                                    @if (item.smoking == false)
+                                    {
+                                        <p><b>Sigara Kullanımı: </b>Hayır</p>
+                                    }
+                                    @if (item.hx_Smoking == true)
+                                    {
+                                        <p><b>Sigara Geçmişi: </b>Evet</p>
+                                    }
+                                    @if (item.hx_Smoking == false)
+                                    {
+                                        <p><b>Sigara Geçmişi: </b>Hayır</p>
+                                    }
+                                    @if (item.hx_Radiothreapy == true)
+                                    {
+                                        <p><b>Radyoterapi Geçmişi: </b>Evet</p>
+                                    }
+                                    @if (item.hx_Radiothreapy == false)
+                                    {
+                                        <p><b>Radyoterapi Geçmişi: </b>Hayır</p>
+                                    }
+                                    <p><b>Tiroid Fonksiyonu: </b>@Html.DisplayFor(modelItem => item.Thyroid_Function1.thyroid_Function_Veri)</p>
+                                    <p><b>Fiziksel Muayene: </b>@Html.DisplayFor(modelItem => item.Physical_Examination1.physical_Examination_Veri)</p>
+                                    <p><b>Adenopati: </b>@Html.DisplayFor(modelItem => item.Adenopaty1.adenopaty_Veri)</p>
+                                    <p><b>Patoloji: </b>@Html.DisplayFor(modelItem => item.Pathology1.pathology_Veri)</p>
+                                    <p><b>Fokalite: </b>@Html.DisplayFor(modelItem => item.Focality1.focality_Veri)</p>
+                                    <p><b>T değeri: </b>@Html.DisplayFor(modelItem => item.T1.t_Veri)</p>
+                                    <p><b>N değeri: </b>@Html.DisplayFor(modelItem => item.N1.n_Veri)</p>
+                                    <p><b>M değeri: </b>@Html.DisplayFor(modelItem => item.M1.m_Veri)</p>
+                                    <p><b>Risk: </b>@Html.DisplayFor(modelItem => item.Risk1.risk_Veri)</p>
+                                    <p><b>Evresi: </b>@Html.DisplayFor(modelItem => item.Stage1.stage_Veri)</p>
+                                    <p><b>Yanıt: </b>@Html.DisplayFor(modelItem => item.Response1.response_Veri)</p>
+                                    @if (item.recurred == 0)
+                                    {
+                                        <p><b>Tekrar etmiş mi: </b>Hayır</p>
+                                    }
+                                    @if (item.recurred == 1)
+                                    {
+                                        <p><b>Tekrar etmiş mi: </b>Evet</p>
+                                    }
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <pre class="custom-font"> @Html.ActionLink("Tahmin Oluştur", "Tahmin", new { id = item.Id }, new { @class = "btn btn-outline-success" }) </pre>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

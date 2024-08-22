@@ -1,0 +1,70 @@
+﻿@model IEnumerable<HastaneProje.Models.Kullanici>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.title = "Doktorlar";
+}
+<style>
+    .custom-font {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+    }
+
+    .custom-font strong {
+        font-weight: 600; 
+    }
+
+    .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .baslik {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #4724da;
+    }
+</style>
+<h2 class="baslik" style="text-align:center;">Doktor Ara</h2>
+<br />
+
+<form method="get" action="@Url.Action("Doktorlar", "Doktor")">
+    <div class="input-group mb-3" style="justify-content:center">
+        <input type="text" class="form-control" name="query" style="max-width:870px;" placeholder="Doktor adını girin ..." aria-label="Recipient's username" aria-describedby="button-addon2" value="@Request.QueryString["query"]">
+        <button class="btn btn-outline-secondary" type="submit" id="button-addon2" style="background-color: #482cb7; color:white;">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+    </div>
+</form>
+
+<br />
+<div class="container col-md-8">
+    <div class="accordion" id="accordionExample">
+        @if (Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading@(item.Id)">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse@(item.Id)" aria-expanded="true" aria-controls="collapse@(item.Id)">
+                            <pre class="custom-font"><strong>İsim: </strong>@Html.DisplayFor(modelItem => item.ad)  <strong>Soyisim: </strong>@Html.DisplayFor(modelItem => item.soyad)</pre>
+                        </button>
+                    </h2>
+                    <div id="collapse@(item.Id)" class="accordion-collapse collapse w-100" aria-labelledby="heading@(item.Id)" data-bs-parent="#accordionExample">
+                        <div class="accordion-body w-100">
+                            <ul class="list-group list-group-flush w-100">
+                                <li class="list-group-item"><b>Tel No: </b>@Html.DisplayFor(modelItem => item.tel_No)</li>
+                                <li class="list-group-item"><b>E-posta: </b>@Html.DisplayFor(modelItem => item.e_posta)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p class="custom-font" style="text-align:center;">Doktor bulunamadı</p>
+        }
+    </div>
+</div>

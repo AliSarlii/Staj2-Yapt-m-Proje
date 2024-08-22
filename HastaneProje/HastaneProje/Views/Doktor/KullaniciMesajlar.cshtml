@@ -1,0 +1,103 @@
+﻿@model IEnumerable<HastaneProje.Models.Iletisim>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.title = "Mesajlar";
+}
+<style>
+    @@keyframes blink {
+        0%, 20% {
+            opacity: 1;
+        }
+        40% {
+            opacity: 0;
+        }
+        60%, 100% {
+            opacity: 1;
+        }
+    }
+</style>
+<h2 class="baslik" style="text-align: center; margin-bottom: 30px; color: #4724da;">Mesajlar</h2>
+<div class="alert alert-primary col-md-8 m-auto"  role="alert" id="alertBox" style="animation: blink 3s infinite;">
+    Okunmamış olan mesajlar mavi renktedir!
+</div>
+<br />
+<div class="col-md-8 m-auto">
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+        @foreach (var item in Model)
+        {
+            if (item.okundu_Bilgi == true)
+            {
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-heading@(item.Id)" >
+                        <button class="accordion-button collapsed" id="@(item.Id)" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse@(item.Id)" aria-expanded="false" aria-controls="flush-collapse@(item.Id)">
+                            @Html.DisplayFor(modelItem => item.Kullanici1.ad) @Html.DisplayFor(modelItem => item.Kullanici1.soyad)
+                        </button>
+                    </h2>
+                    <div id="flush-collapse@(item.Id)" class="accordion-collapse collapse w-100" aria-labelledby="flush-heading@(item.Id)" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body w-100">
+                            <ul class="list-group list-group-flush w-100">
+                                <li class="list-group-item"><b>Mesaj : </b>@Html.DisplayFor(modelItem => item.mesaj)</li>
+                                <li class="list-group-item">
+                                    @Html.ActionLink("Mesajı Sil", "MesajSil", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="accordion-item" >
+                    <h2 class="accordion-header" id="flush-heading@(item.Id)" >
+                        <button class="accordion-button collapsed butonlar" id="@(item.Id)" style="background-color: #D1E9F6" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse@(item.Id)" aria-expanded="false" aria-controls="flush-collapse@(item.Id)">
+                            @Html.DisplayFor(modelItem => item.Kullanici1.ad) @Html.DisplayFor(modelItem => item.Kullanici1.soyad)
+                        </button>
+                    </h2>
+                    <div id="flush-collapse@(item.Id)" class="accordion-collapse collapse w-100" aria-labelledby="flush-heading@(item.Id)" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body w-100">
+                            <ul class="list-group list-group-flush w-100">
+                                <li class="list-group-item"><b>E-posta : </b>@Html.DisplayFor(modelItem => item.e_posta)</li>
+                                <li class="list-group-item"><b>Mesaj : </b>@Html.DisplayFor(modelItem => item.mesaj)</li>
+                                <li class="list-group-item">
+                                    @Html.ActionLink("Mesajı Sil", "MesajSil", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+<script>
+    const buttons = document.querySelectorAll(".butonlar");
+    buttons.forEach(button => {
+        button.addEventListener('click', run);
+    });
+
+    function run(event) {
+        $.ajax({
+            url: '/Doktor/Okundu', // Bu URL'yi kendi controller ve action isminize göre ayarlayın
+            type: 'POST',
+            data: { id: this.id },
+            success: function (response) {
+                console.log("başarılı", response);
+            },
+            error: function (xhr, status, error) {
+                console.error('Bir hata oluştu: ', error);
+            }
+        });
+    }
+</script>
+<script>
+    // Sayfa yüklendikten 10 saniye sonra uyarı kutusunu göster
+    setTimeout(function () {
+        var alertBox = document.getElementById('alertBox');
+        alertBox.style.display = 'block';
+
+        // 5 saniye sonra uyarı kutusunu gizle
+        setTimeout(function () {
+            alertBox.style.display = 'none';
+        }, 10000); // 5000 ms = 5 saniye
+    }, 0); // 10000 ms = 10 saniye
+</script>

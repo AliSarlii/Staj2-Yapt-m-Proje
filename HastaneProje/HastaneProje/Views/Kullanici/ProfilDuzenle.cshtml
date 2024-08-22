@@ -1,0 +1,64 @@
+﻿@model HastaneProje.Models.Kullanici
+@{
+    Layout = "~/Views/Shared/_KullaniciLayout.cshtml";
+    ViewBag.title = "Profili Düzenle";
+}
+<style>
+
+    .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form-control:focus {
+        border-color: #4724da;
+        box-shadow: none;
+    }
+
+    .btn-primary {
+        background-color: #4724da;
+        border-color: #4724da;
+    }
+
+    .btn-primary:hover {
+        background-color: #482cb7;
+        border-color: #482cb7;
+    }
+
+    .baslik {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #4724da;
+    }
+</style>
+<h2 class="baslik">Profili Düzenle</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="col-md-4 m-auto">
+
+        @Html.LabelFor(model => model.ad, "Kullanıcı İsmi", new { @class = "form-label" })
+        <div class="input-group mb-3" style="justify-content:center">
+            @Html.EditorFor(model => model.ad, new { htmlAttributes = new { @class = "form-control", @placeholder = "Kullanıcı adını girin", style = "max-width:870px;" } })
+        </div>
+
+        @Html.LabelFor(model => model.soyad, "Kullanıcı Soyismi", new { @class = "form-label" })
+        <div class="input-group mb-3" style="justify-content:center">
+            @Html.EditorFor(model => model.soyad, new { htmlAttributes = new { @class = "form-control", @placeholder = "Kullanıcı soyadını girin", style = "max-width:870px;" } })
+        </div>
+
+        @Html.LabelFor(model => model.tel_No, "Kullanıcı Telno", new { @class = "form-label" })
+        <div class="input-group mb-3" style="justify-content:center">
+            @Html.EditorFor(model => model.tel_No, new { htmlAttributes = new { @class = "form-control", @placeholder = "Kullanıcı telefon numarasını girin", style = "max-width:870px;" } })
+        </div>
+
+        @Html.LabelFor(model => model.e_posta, "Kulllanıcı e-posta", new { @class = "form-label" })
+        <div class="input-group mb-3" style="justify-content:center">
+            @Html.EditorFor(model => model.e_posta, new { htmlAttributes = new { @class = "form-control", @placeholder = "Kullanıcı e-postasını girin", style = "max-width:870px;" } })
+        </div>
+        @Html.HiddenFor(model => model.yetkinlik)
+        <button type="submit" class="btn btn-primary w-100">Profili Güncelle</button>
+    </div>
+}

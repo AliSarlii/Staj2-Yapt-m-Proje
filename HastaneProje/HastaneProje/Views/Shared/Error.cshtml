@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        background-color: #f4f4f4;
+        font-family: Arial, sans-serif;
+    }
+
+    .error-page {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        text-align: center;
+    }
+
+    .error-box {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        max-width: 500px;
+        width: 100%;
+    }
+
+    .error-box h1 {
+        color: #4724da;
+        font-size: 72px;
+        margin-bottom: 20px;
+    }
+
+    .error-box h3 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .error-box p {
+        color: #666;
+        margin-bottom: 30px;
+    }
+
+    .btn-custom {
+        background-color: #4724da;
+        color: white;
+        border-radius: 5px;
+        padding: 10px 20px;
+        text-decoration: none;
+    }
+
+    .btn-custom:hover {
+        background-color: #351bbd;
+        color: white;
+    }
+</style>
+
+<div class="error-page">
+    <div class="error-box">
+        <h1>404</h1>
+        <h3>Sayfa Bulunamadı</h3>
+        <p>Aradığınız sayfa mevcut değil veya taşınmış olabilir.</p>
+    </div>
+</div>

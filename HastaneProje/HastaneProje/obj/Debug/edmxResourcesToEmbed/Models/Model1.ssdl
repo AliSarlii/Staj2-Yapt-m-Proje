@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Hastane_ProjeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Adenopaty">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="adenopaty_Veri" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Focality">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="focality_Veri" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Iletisim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kullanici" Type="int" />
+    <Property Name="e-posta" Type="nvarchar" MaxLength="255" />
+    <Property Name="mesaj" Type="nvarchar" MaxLength="500" />
+    <Property Name="okundu_Bilgi" Type="bit" />
+  </EntityType>
+  <EntityType Name="Kullanici">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ad" Type="nvarchar" MaxLength="100" />
+    <Property Name="soyad" Type="nvarchar" MaxLength="100" />
+    <Property Name="tel_No" Type="char" MaxLength="11" />
+    <Property Name="e-posta" Type="nvarchar" MaxLength="255" />
+    <Property Name="yetkinlik" Type="bit" />
+  </EntityType>
+  <EntityType Name="M">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="m_Veri" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="N">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="n_Veri" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Pathology">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pathology_Veri" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Physical_Examination">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="physical_Examination_Veri" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Response">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="response_Veri" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Risk">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="risk_Veri" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Stage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="stage_Veri" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="T">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="t_Veri" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Thyroid_Function">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="thyroid_Function_Veri" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Tiroid_Verileri">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="age" Type="int" />
+    <Property Name="gender" Type="bit" />
+    <Property Name="smoking" Type="bit" />
+    <Property Name="hx_Smoking" Type="bit" />
+    <Property Name="hx_Radiothreapy" Type="bit" />
+    <Property Name="thyroid_Function" Type="int" />
+    <Property Name="physical_Examination" Type="int" />
+    <Property Name="adenopaty" Type="int" />
+    <Property Name="pathology" Type="int" />
+    <Property Name="focality" Type="int" />
+    <Property Name="risk" Type="int" />
+    <Property Name="t" Type="int" />
+    <Property Name="n" Type="int" />
+    <Property Name="m" Type="int" />
+    <Property Name="stage" Type="int" />
+    <Property Name="response" Type="int" />
+    <Property Name="recurred" Type="int" />
+    <Property Name="olcum_Tarihi" Type="smalldatetime" />
+    <Property Name="kullanici" Type="int" />
+  </EntityType>
+  <Association Name="FK_Iletisim_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Iletisim" Type="Self.Iletisim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Iletisim">
+        <PropertyRef Name="kullanici" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tiroid_Verileri_Adenopaty">
+    <End Role="Adenopaty" Type="Self.Adenopaty" Multiplicity="0..1" />
+    <End Role="Tiroid_Verileri" Type="Self.Tiroid_Verileri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adenopaty">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tiroid_Verileri">
+        <PropertyRef Name="adenopaty" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tiroid_Verileri_Focality">
+    <End Role="Focality" Type="Self.Focality" Multiplicity="0..1" />
+    <End Role="Tiroid_Verileri" Type="Self.Tiroid_Verileri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Focality">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tiroid_Verileri">
+        <PropertyRef Name="focality" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tiroid_Verileri_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="Tiroid_Verileri" Type="Self.Tiroid_Verileri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tiroid_Verileri">
+        <PropertyRef Name="kullanici" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tiroid_Verileri_M">
+    <End Role="M" Type="Self.M" Multiplicity="0..1" />
+    <End Role="Tiroid_Verileri" Type="Self.Tiroid_Verileri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="M">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tiroid_Verileri">
+        <PropertyRef Name="m" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tiroid_Verileri_N">
+    <End Role="N" Type="Self.N" Multiplicity="0..1" />
+    <End Role="Tiroid_Verileri" Type="Self.Tiroid_Verileri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="N">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tiroid_Verileri">
+        <PropertyRef Name="n" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tiroid_Verileri_Pathology">
+    <End Role="Pathology" Type="Self.Pathology" Multiplicity="0..1" />
+    <End Role="Tiroid_Verileri" Type="Self.Tiroid_Verileri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pathology">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tiroid_Verileri">
+        <PropertyRef Name="pathology" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tiroid_Verileri_Physical_Examination">
+    <End Role="Physical_Examination" Type="Self.Physical_Examination" Multiplicity="0..1" />
+    <End Role="Tiroid_Verileri" Type="Self.Tiroid_Verileri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Physical_Examination">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tiroid_Verileri">
+        <PropertyRef Name="physical_Examination" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tiroid_Verileri_Response">
+    <End Role="Response" Type="Self.Response" Multiplicity="0..1" />
+    <End Role="Tiroid_Verileri" Type="Self.Tiroid_Verileri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Response">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tiroid_Verileri">
+        <PropertyRef Name="response" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tiroid_Verileri_Risk">
+    <End Role="Risk" Type="Self.Risk" Multiplicity="0..1" />
+    <End Role="Tiroid_Verileri" Type="Self.Tiroid_Verileri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Risk">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tiroid_Verileri">
+        <PropertyRef Name="risk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tiroid_Verileri_Stage">
+    <End Role="Stage" Type="Self.Stage" Multiplicity="0..1" />
+    <End Role="Tiroid_Verileri" Type="Self.Tiroid_Verileri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tiroid_Verileri">
+        <PropertyRef Name="stage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tiroid_Verileri_T">
+    <End Role="T" Type="Self.T" Multiplicity="0..1" />
+    <End Role="Tiroid_Verileri" Type="Self.Tiroid_Verileri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="T">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tiroid_Verileri">
+        <PropertyRef Name="t" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tiroid_Verileri_Thyroid_Function">
+    <End Role="Thyroid_Function" Type="Self.Thyroid_Function" Multiplicity="0..1" />
+    <End Role="Tiroid_Verileri" Type="Self.Tiroid_Verileri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Thyroid_Function">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Tiroid_Verileri">
+        <PropertyRef Name="thyroid_Function" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Hastane_ProjeModelStoreContainer">
+    <EntitySet Name="Adenopaty" EntityType="Self.Adenopaty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Focality" EntityType="Self.Focality" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Iletisim" EntityType="Self.Iletisim" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kullanici" EntityType="Self.Kullanici" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="M" EntityType="Self.M" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="N" EntityType="Self.N" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pathology" EntityType="Self.Pathology" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Physical_Examination" EntityType="Self.Physical_Examination" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Response" EntityType="Self.Response" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Risk" EntityType="Self.Risk" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stage" EntityType="Self.Stage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T" EntityType="Self.T" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Thyroid_Function" EntityType="Self.Thyroid_Function" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tiroid_Verileri" EntityType="Self.Tiroid_Verileri" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Iletisim_Kullanici" Association="Self.FK_Iletisim_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Iletisim" EntitySet="Iletisim" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tiroid_Verileri_Adenopaty" Association="Self.FK_Tiroid_Verileri_Adenopaty">
+      <End Role="Adenopaty" EntitySet="Adenopaty" />
+      <End Role="Tiroid_Verileri" EntitySet="Tiroid_Verileri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tiroid_Verileri_Focality" Association="Self.FK_Tiroid_Verileri_Focality">
+      <End Role="Focality" EntitySet="Focality" />
+      <End Role="Tiroid_Verileri" EntitySet="Tiroid_Verileri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tiroid_Verileri_Kullanici" Association="Self.FK_Tiroid_Verileri_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="Tiroid_Verileri" EntitySet="Tiroid_Verileri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tiroid_Verileri_M" Association="Self.FK_Tiroid_Verileri_M">
+      <End Role="M" EntitySet="M" />
+      <End Role="Tiroid_Verileri" EntitySet="Tiroid_Verileri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tiroid_Verileri_N" Association="Self.FK_Tiroid_Verileri_N">
+      <End Role="N" EntitySet="N" />
+      <End Role="Tiroid_Verileri" EntitySet="Tiroid_Verileri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tiroid_Verileri_Pathology" Association="Self.FK_Tiroid_Verileri_Pathology">
+      <End Role="Pathology" EntitySet="Pathology" />
+      <End Role="Tiroid_Verileri" EntitySet="Tiroid_Verileri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tiroid_Verileri_Physical_Examination" Association="Self.FK_Tiroid_Verileri_Physical_Examination">
+      <End Role="Physical_Examination" EntitySet="Physical_Examination" />
+      <End Role="Tiroid_Verileri" EntitySet="Tiroid_Verileri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tiroid_Verileri_Response" Association="Self.FK_Tiroid_Verileri_Response">
+      <End Role="Response" EntitySet="Response" />
+      <End Role="Tiroid_Verileri" EntitySet="Tiroid_Verileri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tiroid_Verileri_Risk" Association="Self.FK_Tiroid_Verileri_Risk">
+      <End Role="Risk" EntitySet="Risk" />
+      <End Role="Tiroid_Verileri" EntitySet="Tiroid_Verileri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tiroid_Verileri_Stage" Association="Self.FK_Tiroid_Verileri_Stage">
+      <End Role="Stage" EntitySet="Stage" />
+      <End Role="Tiroid_Verileri" EntitySet="Tiroid_Verileri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tiroid_Verileri_T" Association="Self.FK_Tiroid_Verileri_T">
+      <End Role="T" EntitySet="T" />
+      <End Role="Tiroid_Verileri" EntitySet="Tiroid_Verileri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tiroid_Verileri_Thyroid_Function" Association="Self.FK_Tiroid_Verileri_Thyroid_Function">
+      <End Role="Thyroid_Function" EntitySet="Thyroid_Function" />
+      <End Role="Tiroid_Verileri" EntitySet="Tiroid_Verileri" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

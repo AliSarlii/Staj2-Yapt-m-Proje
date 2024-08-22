@@ -1,0 +1,300 @@
+------------------------Thyroid_Diff.csv Dosyasından Kontrollü ve Normalizasyon Yapılmış Şekilde SQL Server'a Aktarma Rehberi------------------------
+
+-> Öncelikle Thyroid_Diff.csv dosyasındaki verileri tanıyalım
+
+Kolon_İsmi : ['Alabileceği değerler']
+------------------------------------
+Age int
+------------------------------------
+Gender : ['Yes', 'No']
+------------------------------------
+Smoking : ['Yes', 'No']
+------------------------------------
+Hx_Smoking : ['Yes', 'No']
+------------------------------------
+Hx_Radiothreapy : ['Yes', 'No']
+------------------------------------
+Thyroid Function : ['Euthyroid', 'Clinical Hyperthyroidism', 'Clinical Hypothyroidism', 'Subclinical Hyperthyroidism', 'Subclinical Hypothyroidism']
+------------------------------------
+Physical Examination : ['Single nodular goiter-left', 'Multinodular goiter', 'Single nodular goiter-right', 'Normal', 'Diffuse goiter']
+------------------------------------
+Adenopathy : ['No', 'Right', 'Extensive', 'Left', 'Bilateral', 'Posterior']
+------------------------------------
+Pathology : ['Micropapillary', 'Papillary', 'Follicular', 'Hurthel cell']
+------------------------------------
+Focality : ['Uni-Focal', 'Multi-Focal']
+------------------------------------
+Risk : ['Low', 'Intermediate', 'High']
+------------------------------------
+T : ['T1a', 'T1b', 'T2', 'T3a', 'T3b', 'T4a', 'T4b']
+------------------------------------
+N : ['N0', 'N1b', 'N1a']
+------------------------------------
+M : ['M0', 'M1']
+------------------------------------
+Stage : ['I', 'II', 'IVB', 'III', 'IVA']
+------------------------------------
+Response : ['Indeterminate', 'Excellent', 'Structural Incomplete', 'Biochemical Incomplete']
+------------------------------------
+Recurred : ['Yes', 'No']
+
+-> Bu verileri databaseye aktarmak için önce normalizasyon işlemi yapıp databasemi oluşturdum (database şeması ProjeDb.xlsx dosyasında bulunmaktadır).
+
+-> Databasede normalizasyon işlemi yaptığım için Thyroid_Diff.csv dosyasında da verileri normalizasyon işlemine göre yeniden yapılandırmam lazım. 
+Bunun için de dosyası .xlsx dosyasına dönüştürüp ordan da excel sorgusu yazdım.
+	
+	Sub ConvertValues()
+	    Dim ws As Worksheet
+	    Dim cell As Range
+	
+	    ' Aktif çalışma sayfasını seçin
+	    Set ws = ActiveSheet
+	
+	    ' B sütunundaki değerleri dönüştür
+	    For Each cell In ws.Range("B:B")
+	        Select Case cell.Value
+	            Case "F"
+	                cell.Value = 0
+	            Case "M"
+	                cell.Value = 1
+	        End Select
+	    Next cell
+	
+	    ' C, D, E, Q sütunlarındaki değerleri dönüştür
+	    For Each cell In ws.Range("C:C,D:D,E:E,Q:Q")
+	        Select Case cell.Value
+	            Case "No"
+	                cell.Value = 0
+	            Case "Yes"
+	                cell.Value = 1
+	        End Select
+	    Next cell
+	
+	    ' F sütunundaki değerleri dönüştür
+	    For Each cell In ws.Range("F:F")
+	        Select Case cell.Value
+	            Case "Euthyroid"
+	                cell.Value = 1
+	            Case "Clinical Hyperthyroidism"
+	                cell.Value = 2
+	            Case "Clinical Hypothyroidism"
+	                cell.Value = 3
+	            Case "Subclinical Hyperthyroidism"
+	                cell.Value = 4
+	            Case "Subclinical Hypothyroidism"
+	                cell.Value = 5
+	        End Select
+	    Next cell
+	
+	    ' G sütunundaki değerleri dönüştür
+	    For Each cell In ws.Range("G:G")
+	        Select Case cell.Value
+	            Case "Single nodular goiter-left"
+	                cell.Value = 1
+	            Case "Multinodular goiter"
+	                cell.Value = 2
+	            Case "Single nodular goiter-right"
+	                cell.Value = 3
+	            Case "Normal"
+	                cell.Value = 4
+	            Case "Diffuse goiter"
+	                cell.Value = 5
+	        End Select
+	    Next cell
+	
+	    ' H sütunundaki değerleri dönüştür
+	    For Each cell In ws.Range("H:H")
+	        Select Case cell.Value
+	            Case "No"
+	                cell.Value = 1
+	            Case "Right"
+	                cell.Value = 2
+	            Case "Extensive"
+	                cell.Value = 3
+	            Case "Left"
+	                cell.Value = 4
+	            Case "Bilateral"
+	                cell.Value = 5
+	            Case "Posterior"
+	                cell.Value = 6
+	        End Select
+	    Next cell
+	
+	    ' I sütunundaki değerleri dönüştür
+	    For Each cell In ws.Range("I:I")
+	        Select Case cell.Value
+	            Case "Micropapillary"
+	                cell.Value = 1
+	            Case "Papillary"
+	                cell.Value = 2
+	            Case "Follicular"
+	                cell.Value = 3
+	            Case "Hurthel cell"
+	                cell.Value = 4
+	        End Select
+	    Next cell
+	
+	    ' J sütunundaki değerleri dönüştür
+	    For Each cell In ws.Range("J:J")
+	        Select Case cell.Value
+	            Case "Uni-Focal"
+	                cell.Value = 1
+	            Case "Multi-Focal"
+	                cell.Value = 2
+	        End Select
+	    Next cell
+	
+	    ' K sütunundaki değerleri dönüştür
+	    For Each cell In ws.Range("K:K")
+	        Select Case cell.Value
+	            Case "Low"
+	                cell.Value = 1
+	            Case "Intermediate"
+	                cell.Value = 2
+	            Case "High"
+	                cell.Value = 3
+	        End Select
+	    Next cell
+	
+	    ' L sütunundaki değerleri dönüştür
+	    For Each cell In ws.Range("L:L")
+	        Select Case cell.Value
+	            Case "T1a"
+	                cell.Value = 1
+	            Case "T1b"
+	                cell.Value = 2
+	            Case "T2"
+	                cell.Value = 3
+	            Case "T3a"
+	                cell.Value = 4
+	            Case "T3b"
+	                cell.Value = 5
+	            Case "T4a"
+	                cell.Value = 6
+	            Case "T4b"
+	                cell.Value = 7
+	        End Select
+	    Next cell
+	
+	    ' M sütunundaki değerleri dönüştür
+	    For Each cell In ws.Range("M:M")
+	        Select Case cell.Value
+	            Case "N0"
+	                cell.Value = 1
+	            Case "N1b"
+	                cell.Value = 2
+	            Case "N1a"
+	                cell.Value = 3
+	        End Select
+	    Next cell
+	
+	    ' N sütunundaki değerleri dönüştür
+	    For Each cell In ws.Range("N:N")
+	        Select Case cell.Value
+	            Case "M0"
+                	cell.Value = 1
+            	    Case "M1"
+                	cell.Value = 2
+	        End Select
+	   Next cell
+	
+	    ' O sütunundaki değerleri dönüştür
+	    For Each cell In ws.Range("O:O")
+	        Select Case cell.Value
+	            Case "I"
+	                cell.Value = 1
+	            Case "II"
+	                cell.Value = 2
+	            Case "IVB"
+	                cell.Value = 3
+	            Case "III"
+	                cell.Value = 4
+	            Case "IVA"
+	                cell.Value = 5
+	        End Select
+	    Next cell
+	
+	    ' P sütunundaki değerleri dönüştür
+	    For Each cell In ws.Range("P:P")
+	        Select Case cell.Value
+	            Case "Indeterminate"
+	                cell.Value = 1
+	            Case "Excellent"
+	                cell.Value = 2
+	            Case "Structural Incomplete"
+	                cell.Value = 3
+	            Case "Biochemical Incomplete"
+	                cell.Value = 4
+	        End Select
+	    Next cell
+	End Sub
+
+-> Sonra bu normalize edilmiş verileri databaseye yükleyebilmek için geri .csv dosyasına çevirdim (verilerrr.csv).
+-> Veriyi çevirdikten sonra python kullanarak verileri databaseye kayıt ettim.
+-> Kendi databasemde oluşturduğum Tiroid_Verileri tablosu extradan kullanici ve olcum_Tarihi verilerini tuttuğu için önce geçici bir tablo oluşturdum.
+ 
+	CREATE TABLE TempTable (
+	    Age INT,
+	    Gender BIT,
+	    Smoking BIT,
+	    Hx_Smoking BIT,
+	    Hx_Radiothreapy BIT,
+	    Thyroid_Function INT,
+	    Physical_Examination INT,
+	    Adenopathy INT,
+	    Pathology INT,
+	    Focality INT,
+	    Risk INT,
+	    T INT,
+	    N INT,
+	    M INT,
+	    Stage INT,
+	    Response INT,
+	    Recurred BIT
+	);
+
+-> Sonra verileri python kodu ile bu TempTable'ye kayıt ettim. 
+
+	import pandas as pd
+	import pyodbc
+
+	# CSV dosyasını oku
+	file_path = 'C:/Users/user/Desktop/verilerrr.csv'
+	df = pd.read_csv(file_path, encoding='utf-8')
+
+
+	# SQL Server bağlantısı oluştur
+	server = 'DESKTOP-T4ANP1D'  # SQL Server sunucu adı veya IP adresi
+	database = 'Hastane_Proje'  # Veritabanı adı
+
+	connection_string = f'DRIVER={{SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
+	conn = pyodbc.connect(connection_string)
+	cursor = conn.cursor()
+
+	# Tablo adı
+	table_name = 'TempTable'
+
+	# Sütun adlarını alın
+	columns = ', '.join(df.columns)
+	
+	# Hataları yakalayarak ek bilgi sağla
+	for index, row in df.iterrows():
+	    try:
+	        values = ', '.join([f"'{str(item)}'" if pd.notna(item) else 'NULL' for item in row])
+	        insert_query = f"INSERT INTO {table_name} ({columns}) VALUES ({values})"
+	        cursor.execute(insert_query)
+	    except Exception as e:
+	        print(f"Error on row {index}: {e}")
+	        continue
+
+	# Değişiklikleri kaydet ve bağlantıyı kapat
+	conn.commit()
+	cursor.close()
+	conn.close()
+
+-> Sonrasında burdaki verileri Tiroid_Verileri tablomdaki kullanici ve olcum_Tarihi verileri null olarak atanacak şekilde ayarlayıp TempTable'deki verileri Tiroid_Verileri tabloma aktardım.
+
+	INSERT INTO YourRealTable (age, gender, smoking, hx_Smoking, hx_Radiothreapy, thyroid_Function, physical_Examination, adenopathy, pathology, focality, risk, t, n, m, stage, response, recurred, olcum_Tarihi, kullanici)
+	SELECT Age, Gender, Smoking, Hx_Smoking, Hx_Radiothreapy, Thyroid_Function, Physical_Examination, Adenopathy, Pathology, Focality, Risk, T, N, M, Stage, Response, Recurred, NULL, NULL
+	FROM TempTable;
+

@@ -1,0 +1,63 @@
+Troid Hastalığı Tahmin Projesi Otomasyonu 
+
+3 Aktör var
+
+Doktor
+	Kullanıcı ekler siler düzenler listeler (doktor da ekleyebilir)
+	Hasta verileri ekler siler düzenler listeler
+	Doktor ekler listeler
+	Sadece kendini düzenleyip silebilir
+	Kullanıcıların verilerini ve kendi verilerini makine öğrenmesine gönderebilir
+Kullanıcı
+	Kendi verilerini listeleyebilir
+	Kendi verileri ile makine öğrenmesi çıktısı alabilir
+	Doktorlara mesaj iletebilir
+	Hakkında Anasayfa lara erişebilir
+Ziyaretci
+	Üye olabilir
+	Mesaj iletebilir
+	Hakkında Anasayfa lara erişebilir
+
+Tiroid verileri tablosundaki Kullanici sütunu databese de null olabilir çünkü başta makine öğrenmesine için verileri gireceğiz ama uygulamada kullanıcı null olamaz
+
+İletişim tablosunda database tarafında Kullanici null olabilir çünkü hiçbir giriş yapmayan kişi de mesaj gönderecektir 
+İletişim tablosunda database tarafında Eposta sütunu da null olabilir çünkü kullanıcı giriş yapıp mesaj göndermek istediğinde e posta bilgisi girmesine gerek olmaması lazım
+Bu durumlarda uygulama tarafında kullanıcı giriş yapmış ise kullanici null gitmemesi lazım eğer bir giriş yok ise de e-posta verisinin null gitmemesi lazım
+
+Machine Learning Veri yapısı tablo aktarma
+
+Bit değerlerde Gender hariç No = 0 , Yes = 1 kullanılır.
+
+Age int
+------------------------------------
+Gender : bit F = 0  , M = 1
+------------------------------------
+Smoking : bit
+------------------------------------
+Hx_Smoking : bit
+------------------------------------
+Hx_Radiothreapy : bit
+------------------------------------
+Thyroid Function : ['Euthyroid', 'Clinical Hyperthyroidism', 'Clinical Hypothyroidism', 'Subclinical Hyperthyroidism', 'Subclinical Hypothyroidism']
+------------------------------------
+Physical Examination : ['Single nodular goiter-left', 'Multinodular goiter', 'Single nodular goiter-right', 'Normal', 'Diffuse goiter']
+------------------------------------
+Adenopathy : ['No', 'Right', 'Extensive', 'Left', 'Bilateral', 'Posterior']
+------------------------------------
+Pathology : ['Micropapillary', 'Papillary', 'Follicular', 'Hurthel cell']
+------------------------------------
+Focality : ['Uni-Focal', 'Multi-Focal']
+------------------------------------
+Risk : ['Low', 'Intermediate', 'High']
+------------------------------------
+T : ['T1a', 'T1b', 'T2', 'T3a', 'T3b', 'T4a', 'T4b']
+------------------------------------
+N : ['N0', 'N1b', 'N1a']
+------------------------------------
+M : ['M0', 'M1']
+------------------------------------
+Stage : ['I', 'II', 'IVB', 'III', 'IVA']
+------------------------------------
+Response : ['Indeterminate', 'Excellent', 'Structural Incomplete', 'Biochemical Incomplete']
+------------------------------------
+Recurred : bit

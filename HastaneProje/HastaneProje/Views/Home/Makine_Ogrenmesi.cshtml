@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Makine Öğrenmesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        background-image: url('../../Content/HomeController/img/background1.jpg');
+        background-size: cover;
+        color: #fff;
+    }
+
+    .content-section {
+        background-color: rgba(71, 36, 218, 0.8);
+        padding: 60px 0;
+        border-radius: 15px;
+    }
+
+    .content-section h1, .content-section h2, .content-section p {
+        color: #fff;
+    }
+
+    .content-section img {
+        border-radius: 10px;
+    }
+
+    .btn-custom {
+        background-color: #4724da;
+        border: none;
+        color: #fff;
+    }
+
+    .btn-custom:hover {
+        background-color: #3a1eac;
+    }
+</style>
+
+<div class="container content-section mt-5 mb-5 p-4">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Makine Öğrenmesi ve SVM Modeli ile Tiroid Hastalığı Tahmini</h1>
+            <p>
+                Tiroid hastalığı tahmini, makine öğrenmesi teknikleri kullanılarak yapılan bir sağlık analizi sürecidir. Bu süreçte, makine öğrenmesi algoritmaları, hastalık riskini değerlendirmek ve gelecekteki olası durumları tahmin etmek için kullanılır.
+            </p>
+            <br />
+            <h2>Makine Öğrenmesi Nedir?</h2>
+            <p>
+                Makine öğrenmesi, bilgisayar sistemlerinin verilerden öğrenmesini ve bu öğrenmeyi kullanarak tahminler veya kararlar almasını sağlayan bir yapay zeka alanıdır. Geleneksel programlamanın aksine, makine öğrenmesi algoritmaları, veri üzerinde eğitim alarak belirli görevleri yerine getirme yeteneği kazanır.
+            </p>
+            <br />
+            <h2>SVM Modeli Nedir?</h2>
+            <p>
+                Destek Vektör Makineleri (SVM), sınıflandırma ve regresyon analizlerinde kullanılan bir makine öğrenmesi algoritmasıdır. SVM, verileri, farklı sınıfları ayıran en uygun hiperdüzlemi (veya sınırı) bulmaya çalışır. Bu model, verileri iki sınıfa ayıran bir sınır (hiperdüzlem) belirler ve yeni verileri bu sınıflara tahmin eder.
+            </p>
+            <br />
+            <h2>Nasıl Çalışır?</h2>
+            <p>
+                SVM modelinde, eğitim verileri üzerinde çalışarak en iyi sınıflandırma sınırını bulmaya çalışırız. Model, verileri iki sınıfa ayıran bir hiperdüzlem (veya düzlem) belirler. Bu hiperdüzlem, veri noktaları arasında maksimum marjini (farkı) sağlar. Modelin amacı, yeni verilerin doğru sınıfa atanabilmesi için bu sınırı optimize etmektir.
+            </p>
+            <br />
+            <h2>Tiroid Hastalığı Tahmini</h2>
+            <p>
+                Tiroid hastalığı tahmini, hastaların tıbbi verilerini kullanarak, tekrar hastalık yaşama riskini değerlendirmeyi içerir. SVM modeli, geçmiş sağlık verilerini analiz ederek ve mevcut sağlık durumunu dikkate alarak bu tahmini yapar. Bu, sağlık hizmet sağlayıcılarına hastalık riskini yönetme ve uygun önlemleri alma konusunda yardımcı olabilir.
+            </p>
+        </div>
+    </div>
+</div>

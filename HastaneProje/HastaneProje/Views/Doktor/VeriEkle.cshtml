@@ -1,0 +1,243 @@
+﻿@model HastaneProje.Models.Tiroid_Verileri
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.title = "Veri Ekle";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .form-container {
+        max-width: 500px;
+        margin: 50px auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #4724da;
+    }
+
+    .form-control:focus {
+        border-color: #4724da;
+        box-shadow: none;
+    }
+
+    .btn-primary {
+        background-color: #4724da;
+        border-color: #4724da;
+    }
+
+    .btn-primary:hover {
+        background-color: #482cb7;
+        border-color: #482cb7;
+    }
+
+    .form-container .form-control,
+    .form-container .mb-3 {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    .dropdown-menu {
+        max-height: 300px; 
+        overflow-y: auto; 
+    }
+
+    .dropdown-item {
+        cursor: pointer; 
+    }
+
+    .dropdown-menu input {
+        width: 100%; 
+        box-sizing: border-box; 
+        margin-bottom: 10px; 
+    }
+
+    .deneme {
+        border-style:solid!important;
+        border-width: 0px 1px 1px 1px!important;
+        border-color: #482cb7!important;
+    }
+    #resultBox {
+        transition:border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+</style>
+<h2 style="text-align: center; color: #4724da;">Veri Ekle</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div style="display:flex; flex-wrap:wrap; justify-content:space-evenly; align-content:center; align-items:center;">
+
+        <div class="form-container w-100 " style="margin-bottom:10px;">
+            <div class="mb-3 w-100">
+                @Html.LabelFor(model => model.age, "Yaş", new { @class = "form-label" })
+                @Html.EditorFor(model => model.age, new { htmlAttributes = new { @class = "form-control w-100", @placeholder = "Yaşı girin" ,required = "required"} })
+            </div>
+
+            <div class="mb-3 w-100">
+                @Html.LabelFor(model => model.gender, "Cinsiyet", new { @class = "form-label" })
+                @Html.EditorFor(model => model.gender, new { htmlAttributes = new { @class = "form-control w-100", @placeholder = "Cinsiyeti girin", required = "required" } })
+            </div>
+
+            <div class="mb-3 w-100">
+                @Html.LabelFor(model => model.smoking, "Sigara Kullanımı", new { @class = "form-label" })
+                @Html.EditorFor(model => model.smoking, new { htmlAttributes = new { @class = "form-control w-100", @placeholder = "Sigara kullanımını girin", required = "required" } })
+            </div>
+
+            <div class="mb-3 w-100">
+                @Html.LabelFor(model => model.hx_Smoking, "Sigara Geçmişi", new { @class = "form-label" })
+                @Html.EditorFor(model => model.hx_Smoking, new { htmlAttributes = new { @class = "form-control w-100", @placeholder = "Sigara geçmişini girin", required = "required" } })
+            </div>
+
+            <div class="mb-3 w-100">
+                @Html.LabelFor(model => model.hx_Radiothreapy, "Radyoterapi Geçmişi", new { @class = "form-label" })
+                @Html.EditorFor(model => model.hx_Radiothreapy, new { htmlAttributes = new { @class = "form-control w-100", @placeholder = "Radyoterapi geçmişini girin", required = "required" } })
+            </div>
+
+            <div class="mb-3 w-100">
+                @Html.LabelFor(model => model.thyroid_Function, "Tiroid Fonksiyonu", new { @class = "form-label" })
+                @Html.DropDownList("thyroid_Function", null, htmlAttributes: new { @class = "form-control w-100" })
+            </div>
+
+            <div class="mb-3 w-100">
+                @Html.LabelFor(model => model.physical_Examination, "Fiziksel Muayene", new { @class = "form-label" })
+                @Html.DropDownList("physical_Examination", null, htmlAttributes: new { @class = "form-control w-100" })
+            </div>
+
+            <div class="mb-3 w-100">
+                @Html.LabelFor(model => model.adenopaty, "Adenopati", new { @class = "form-label" })
+                @Html.DropDownList("adenopaty", null, htmlAttributes: new { @class = "form-control w-100" })
+            </div>
+            <div class="mb-3 w-100">
+                @Html.LabelFor(model => model.pathology, "Patoloji", new { @class = "form-label" })
+                @Html.DropDownList("pathology", null, htmlAttributes: new { @class = "form-control w-100" })
+            </div>
+        </div>
+
+        <div class="form-container w-100" style="margin-bottom:10px;">
+            <div class="mb-3 w-100">
+                @Html.LabelFor(model => model.focality, "Fokalite", new { @class = "form-label" })
+                @Html.DropDownList("focality", null, htmlAttributes: new { @class = "form-control w-100" })
+            </div>
+            <div class="mb-3 w-100">
+                @Html.LabelFor(model => model.risk, "Risk", new { @class = "form-label" })
+                @Html.DropDownList("risk", null, htmlAttributes: new { @class = "form-control w-100" })
+            </div>
+
+            <div class="mb-3 w-100">
+                @Html.LabelFor(model => model.t, "T Değeri", new { @class = "form-label" })
+                @Html.DropDownList("t", null, htmlAttributes: new { @class = "form-control w-100" })
+            </div>
+
+            <div class="mb-3 w-100">
+                @Html.LabelFor(model => model.n, "N Değeri", new { @class = "form-label" })
+                @Html.DropDownList("n", null, htmlAttributes: new { @class = "form-control w-100" })
+            </div>
+
+            <div class="mb-3 w-100">
+                @Html.LabelFor(model => model.m, "M Değeri", new { @class = "form-label" })
+                @Html.DropDownList("m", null, htmlAttributes: new { @class = "form-control w-100" })
+            </div>
+
+            <div class="mb-3 w-100">
+                @Html.LabelFor(model => model.stage, "Evresi", new { @class = "form-label" })
+                @Html.DropDownList("stage", null, htmlAttributes: new { @class = "form-control w-100" })
+            </div>
+
+            <div class="mb-3 w-100">
+                @Html.LabelFor(model => model.response, "Yanıt", new { @class = "form-label" })
+                @Html.DropDownList("response", null, htmlAttributes: new { @class = "form-control w-100" })
+            </div>
+
+            <div class="mb-3 w-100">
+                @Html.LabelFor(model => model.recurred, "Tekrarlama Durumu", new { @class = "form-label" })
+                @Html.EditorFor(model => model.recurred, new { htmlAttributes = new { @class = "form-control w-100", @placeholder = "Tekrarlama durumunu girin"} })
+            </div>
+
+            <div class="mb-3 w-100">
+                @Html.LabelFor(model => model.olcum_Tarihi, "Ölçüm Tarihi", new { @class = "form-label" })
+                @Html.TextBoxFor(model => model.olcum_Tarihi, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control", type = "datetime-local", min = "1900-01-01T00:00", max = "2079-06-06T23:59" })
+            </div>
+        </div>
+    </div>
+    @Html.HiddenFor(model => model.kullanici, new { id = "hiddenField" })
+    <div class="form-container w-100" style=" margin:0px auto; ">
+        <div class="w-100">
+            <label for="searchInput" class="form-label" style="margin-bottom:0px!important;">Kullanıcı Ara</label>
+            <input type="search" class="form-control" id="searchInput" placeholder="Kullanıcı ara..." autocomplete="off" style="border-radius: 5px 5px 0px 0px; border-bottom: none; margin-top: 10px;">
+        </div>
+        <div id="resultBox" class="p-3 border bg-light" style="max-height: 200px; overflow-y: auto; border-radius: 0px 0px 5px 5px; border-top: none; ">
+            Kullanıcılar...
+        </div>
+    </div>
+        <br />
+        <div class="col-md-6 m-auto">
+            <button type="submit" class="btn btn-primary w-100">Veriyi Ekle</button>
+            <br />
+            <br />
+            <br />
+        </div>
+        }
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+    $(document).ready(function() {
+        $('#searchInput').on('input', function() {
+            var searchValue = $(this).val();
+
+            // AJAX isteği
+            $.ajax({
+                url: '@Url.Action("Search", "Doktor")', // İsteğin gönderileceği action
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ query: searchValue }), // JSON formatında veri gönderimi
+                success: function(response) {
+                    console.log("Sunucudan gelen yanıt:", response);
+
+                    // Gelen verileri kutuya yazdırma
+                    var resultHtml = "";
+                    response.forEach(function(item) {
+                        resultHtml += "<p class='result-item' data-value='" + item.Value + "'>" + item.Text + "</p>";
+                    });
+                    $('#resultBox').html(resultHtml);
+                },
+                error: function(xhr, status, error) {
+                    console.error("Hata:", error);
+                }
+            });
+        });
+
+        // Arama sonuçlarına tıklama olayı
+        $('#resultBox').on('click', '.result-item', function() {
+            var selectedText = $(this).text();
+            var selectedValue = $(this).data('value');
+
+            // Input ve gizli alanı güncelle
+            $('#searchInput').val(selectedText);
+            $('#hiddenField').val(selectedValue);
+
+            // Tıkladıktan sonra div'i boşalt
+            $('#resultBox').empty();
+        });
+    });
+        </script>
+
+<script>
+    var buton = document.getElementById("searchInput")
+    var div = document.getElementById("resultBox")
+    document.addEventListener("focusin", run)
+    function run() {
+        div.classList.add("deneme")
+    }
+    document.addEventListener("focusout", run2)
+    function run2() {
+        div.classList.remove("deneme")
+    }
+</script>
